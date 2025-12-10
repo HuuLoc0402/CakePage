@@ -83,7 +83,7 @@ builder.Services.AddControllersWithViews()
         options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
     });
 builder.Services.AddRazorPages();
-
+builder.Services.AddScoped<IChatNoteRepository, ChatNoteRepository>();
 builder.Services.AddScoped<IChatRepository, ChatRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
@@ -154,7 +154,6 @@ async Task CreateGuestUserIfNotExists(IServiceProvider services)
             await userManager.AddToRoleAsync(guestUser, guestRole);
     }
 }
-
 async Task CreateAdminUserIfNotExists(IServiceProvider services)
 {
     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
@@ -191,4 +190,3 @@ async Task CreateAdminUserIfNotExists(IServiceProvider services)
         }
     }
 }
-
